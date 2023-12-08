@@ -1,4 +1,5 @@
 import requests
+import os
 import json
 import time
 from dbutils.pooled_db import PooledDB
