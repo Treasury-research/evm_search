@@ -155,6 +155,6 @@ if __name__ =="__main__":
         }
     )
     while True:
-        time.sleep(3600)  # 休眠1小时 (3600秒)
         data_json = scarper(url)
         updateSQL(data_json,pool)
+        time.sleep(3600)  # 休眠1小时 (3600秒)
