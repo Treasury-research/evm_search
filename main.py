@@ -112,10 +112,10 @@ def updateSQL(data_json, pool):
         cursor.executemany(sql, new_data)
         conn.commit()
     # get the old data
-    cursor.execute("SELECT MAX(updatedAt) FROM evm_ink")
+    cursor.execute("SELECT MIN(updatedAt) FROM evm_ink")
     latest_updated_at = cursor.fetchone()[0]
     # 删除非最新updatedAt时间的记录
-    delete_query = "DELETE FROM evm_ink WHERE updatedAt < %s"
+    delete_query = "DELETE FROM evm_ink WHERE updatedAt = %s"
     cursor.execute(delete_query, (latest_updated_at,))
 
     conn.commit()
