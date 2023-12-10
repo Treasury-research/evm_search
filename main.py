@@ -98,7 +98,7 @@ def updateSQL(data_json, pool):
         # VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         # """
         sql = """
-                INSERT INTO evm_ink_new (Token, Chain, Chain_id, Protocol, Total_Minted, Total_Supply, Minted, Mint_Limit, Owners)
+                INSERT INTO evm_ink (Token, Chain, Chain_id, Protocol, Total_Minted, Total_Supply, Minted, Mint_Limit, Owners)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
                     Chain_id = VALUES(chain_id),
@@ -154,6 +154,7 @@ if __name__ =="__main__":
             "ssl_accept":"strict"
         }
     )
+    url = 'https://api.evm.ink/v1/graphql/'
     while True:
         data_json = scarper(url)
         updateSQL(data_json,pool)
