@@ -76,7 +76,7 @@ def updateSQL(data_json, pool):
             chain_id = item['network_id']
             chain = chainId2name[chain_id]
             protocol = item['protocol']
-            total_supply = item['max_supply']
+            total_supply = int(item['max_supply'])/int(item['decimal_digits'])
             minted = float(int(item['minted_total'])/int(item['max_supply']))
             mint_limit = int(item['mint_limit'])/int(item['decimal_digits'])
             owners = 0
@@ -85,8 +85,10 @@ def updateSQL(data_json, pool):
                     owners = item['stats']['holders']
             except:
                 print(i,item)
-            total_minted = item['minted_total']
-            batch_data.append((token, chain, chain_id, protocol, total_minted, total_supply, minted, mint_limit, owners))
+            total_minted = int(item['minted_total'])/int(item['decimal_digits'])
+            created_at = item['created_at']
+
+            batch_data.append((token, chain, chain_id, protocol, total_minted, total_supply, minted, mint_limit, owners, created_at))
     # insert or update the data
     batch_size = 1000
     conn = pool.connection()
@@ -98,25 +100,25 @@ def updateSQL(data_json, pool):
         # VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         # """
         sql = """
-                INSERT INTO evm_ink (Token, Chain, Chain_id, Protocol, Total_Minted, Total_Supply, Minted, Mint_Limit, Owners)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                INSERT INTO evm_ink (Token, Chain, Chain_id, Protocol, Total_Minted, Total_Supply, Minted, Mint_Limit, Owners,CreatedAt)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
-                    Chain_id = VALUES(chain_id),
                     Chain = VALUES(Chain),
                     Total_Minted = VALUES(Total_Minted),
                     Total_Supply = VALUES(Total_Supply),
                     Minted = VALUES(Minted),
                     Mint_Limit = VALUES(Mint_Limit),
-                    Owners = VALUES(Owners)
+                    Owners = VALUES(Owners),
+                    CreatedAt = VALUES(CreatedAt)
             """
         cursor.executemany(sql, new_data)
         conn.commit()
-    # get the old data
-    cursor.execute("SELECT MIN(updatedAt) FROM evm_ink")
-    latest_updated_at = cursor.fetchone()[0]
-    # 删除非最新updatedAt时间的记录
-    delete_query = "DELETE FROM evm_ink WHERE updatedAt = %s"
-    cursor.execute(delete_query, (latest_updated_at,))
+    # # get the old data
+    # cursor.execute("SELECT MIN(updatedAt) FROM evm_ink")
+    # latest_updated_at = cursor.fetchone()[0]
+    # # 删除非最新updatedAt时间的记录
+    # delete_query = "DELETE FROM evm_ink WHERE updatedAt = %s"
+    # cursor.execute(delete_query, (latest_updated_at,))
 
     conn.commit()
     cursor.close()
