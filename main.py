@@ -5,6 +5,7 @@ import time
 from dbutils.pooled_db import PooledDB
 import pymysql
 from datetime import datetime, timedelta
+import uuid
 
 def scarper(url):
     # Define the URL of the API
@@ -87,8 +88,8 @@ def updateSQL(data_json, pool):
                 print(i,item)
             total_minted = int(item['minted_total'])/int(item['decimal_digits'])
             created_at = item['created_at']
-
-            batch_data.append((token, chain, chain_id, protocol, total_minted, total_supply, minted, mint_limit, owners, created_at))
+            generated_uuid = str(uuid.uuid4())
+            batch_data.append((token, chain, chain_id, protocol, total_minted, total_supply, minted, mint_limit, owners, created_at,generated_uuid))
     # insert or update the data
     batch_size = 1000
     conn = pool.connection()
@@ -100,8 +101,8 @@ def updateSQL(data_json, pool):
         # VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         # """
         sql = """
-                INSERT INTO evm_ink (Token, Chain, Chain_id, Protocol, Total_Minted, Total_Supply, Minted, Mint_Limit, Owners,CreatedAt)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                INSERT INTO evm_ink (Token, Chain, Chain_id, Protocol, Total_Minted, Total_Supply, Minted, Mint_Limit, Owners,CreatedAt,id)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
                     Chain = VALUES(Chain),
                     Total_Minted = VALUES(Total_Minted),
@@ -109,7 +110,8 @@ def updateSQL(data_json, pool):
                     Minted = VALUES(Minted),
                     Mint_Limit = VALUES(Mint_Limit),
                     Owners = VALUES(Owners),
-                    CreatedAt = VALUES(CreatedAt)
+                    CreatedAt = VALUES(CreatedAt),
+                    id = VALUES(id)
             """
         cursor.executemany(sql, new_data)
         conn.commit()
