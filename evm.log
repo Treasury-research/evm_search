@@ -1,0 +1,32 @@
+2023-12-13 16:48:07,374 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:48:07,856 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 403 None
+2023-12-13 16:48:07,891 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:48:08,286 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 403 None
+2023-12-13 16:48:08,297 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:48:08,682 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 403 None
+2023-12-13 16:48:08,694 - INFO - scarper data success!
+2023-12-13 16:48:08,694 - INFO - update data ing
+2023-12-13 16:48:09,345 - INFO - Update data success!
+2023-12-13 16:48:09,345 - INFO - sleep 1 hour now!
+2023-12-13 16:51:39,410 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:51:40,114 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 200 None
+2023-12-13 16:51:40,148 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:51:40,924 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 200 None
+2023-12-13 16:51:41,044 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:51:41,703 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 200 None
+2023-12-13 16:51:41,741 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:51:42,272 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 200 None
+2023-12-13 16:51:42,275 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:51:42,952 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 200 None
+2023-12-13 16:51:43,000 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:51:43,523 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 200 None
+2023-12-13 16:51:43,559 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:51:44,305 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 200 None
+2023-12-13 16:51:44,355 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:51:44,927 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 200 None
+2023-12-13 16:51:44,960 - DEBUG - Starting new HTTPS connection (1): api.evm.ink:443
+2023-12-13 16:51:45,479 - DEBUG - https://api.evm.ink:443 "POST /v1/graphql/ HTTP/1.1" 200 None
+2023-12-13 16:51:45,482 - INFO - scarper data success!
+2023-12-13 16:51:45,482 - INFO - update data ing
+2023-12-13 16:51:53,480 - INFO - Update data success!
+2023-12-13 16:51:53,480 - INFO - sleep 1 hour now!
