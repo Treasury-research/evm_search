@@ -6,6 +6,9 @@ from dbutils.pooled_db import PooledDB
 import pymysql
 from datetime import datetime, timedelta
 import uuid
+import logging
+
+
 
 def scarper(url):
     # Define the URL of the API
@@ -158,8 +161,15 @@ if __name__ =="__main__":
             "ssl_accept":"strict"
         }
     )
+    # 配置日志记录
+    logging.basicConfig(filename='evm.log', level=logging.DEBUG, 
+                        format='%(asctime)s - %(levelname)s - %(message)s')
     url = 'https://api.evm.ink/v1/graphql/'
     while True:
         data_json = scarper(url)
+        logging.info('scarper data success!')
+        logging.info('update data ing')
         updateSQL(data_json,pool)
+        logging.info('Update data success!')
+        logging.info('sleep 1 hour now!')
         time.sleep(3600)  # 休眠1小时 (3600秒)
